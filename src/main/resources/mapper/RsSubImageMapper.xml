@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.uestc.imdds.mapper.RsSubImageMapper">
+
+    <!-- 根据id查询RsSubImage -->
+    <select id="getById" parameterType="java.lang.Integer" resultType="edu.uestc.imdds.entitiy.RsSubImage">
+        SELECT * FROM rs_sub_image WHERE id = #{id}
+    </select>
+
+    <!-- 查询所有RsSubImage -->
+    <select id="getAll" resultType="edu.uestc.imdds.entitiy.RsSubImage">
+        SELECT * FROM rs_sub_image
+    </select>
+
+    <!-- 根据父id查询RsSubImage -->
+    <select id="getByFatherId" parameterType="java.lang.Integer" resultType="edu.uestc.imdds.entitiy.RsSubImage">
+        SELECT * FROM rs_sub_image WHERE father_id = #{id}
+    </select>
+
+    <!-- 添加RsSubImage -->
+    <insert id="addRsImage" parameterType="edu.uestc.imdds.entitiy.RsSubImage">
+        INSERT INTO rs_sub_image (father_id, image_name, image_save_path)
+        VALUES (#{fatherId}, #{imageName}, #{imageSavePath})
+    </insert>
+
+    <!-- 根据id删除RsSubImage -->
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM rs_sub_image WHERE id = #{id}
+    </delete>
+
+    <!-- 更新RsSubImage -->
+    <update id="updateRsSubImage" parameterType="edu.uestc.imdds.entitiy.RsSubImage">
+        UPDATE rs_sub_image
+        SET father_id = #{fatherId}, image_name = #{imageName}, image_save_path = #{imageSavePath}
+        WHERE id = #{id}
+    </update>
+
+</mapper>

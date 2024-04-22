@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.uestc.imdds.mapper.RsImageMapper">
+
+    <select id="getById" resultType="edu.uestc.imdds.entitiy.RsImage" parameterType="java.lang.Integer" >
+        select  *
+        from rs_image
+        where id = #{id}
+    </select>
+
+    <select id="getByName" resultType="edu.uestc.imdds.entitiy.RsImage" parameterType="java.lang.String" >
+        select  *
+        from rs_image
+        where image_name = #{imageName}
+    </select>
+
+    <insert id="addRsImage" parameterType="edu.uestc.imdds.entitiy.RsImage">
+        INSERT INTO rs_image (image_name, satellite, sensor, shoot_date, shoot_time,
+                              top_left_latitude, top_left_longitude, top_right_latitude, top_right_longitude,
+                              bottom_right_latitude, bottom_right_longitude, bottom_left_latitude, bottom_left_longitude,
+                              image_save_path, metadata_save_path, upload_date)
+        VALUES (#{imageName}, #{satellite}, #{sensor}, #{shootDate}, #{shootTime},
+                #{topLeftLatitude}, #{topLeftLongitude}, #{topRightLatitude}, #{topRightLongitude},
+                #{bottomRightLatitude}, #{bottomRightLongitude}, #{bottomLeftLatitude}, #{bottomLeftLongitude},
+                #{imageSavePath}, #{metadataSavePath}, #{uploadDate})
+    </insert>
+
+    <delete id="deleteById">
+        delete from rs_image
+        where id = #{id}
+    </delete>
+
+    <update id="updateRsImage" parameterType="edu.uestc.imdds.entitiy.RsImage">
+        UPDATE rs_image
+        SET image_name = #{imageName},
+            satellite = #{satellite},
+            sensor = #{sensor},
+            shoot_date = #{shootDate},
+            shoot_time = #{shootTime},
+            top_left_latitude = #{topLeftLatitude},
+            top_left_longitude = #{topLeftLongitude},
+            top_right_latitude = #{topRightLatitude},
+            top_right_longitude = #{topRightLongitude},
+            bottom_right_latitude = #{bottomRightLatitude},
+            bottom_right_longitude = #{bottomRightLongitude},
+            bottom_left_latitude = #{bottomLeftLatitude},
+            bottom_left_longitude = #{bottomLeftLongitude},
+            image_save_path = #{imageSavePath},
+            metadata_save_path = #{metadataSavePath},
+            upload_date = #{uploadDate}
+        WHERE id = #{id}
+    </update>
+
+    <select id="getAll" resultType="edu.uestc.imdds.entitiy.RsImage">
+        select * from rs_image
+    </select>
+
+</mapper>
