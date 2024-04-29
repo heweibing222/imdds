@@ -34,6 +34,12 @@ public class RsSubImageServiceImpl implements RsSubImageService {
     }
 
     @Override
+    public RsSubImage getById(Integer id) {
+        return rsSubImageMapper.getById(id);
+    }
+
+
+    @Override
     public boolean add(RsSubImage rsSubImage) {
         int flag = rsSubImageMapper.addRsImage(rsSubImage);
         return flag==1;

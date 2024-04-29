@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.uestc.imdds.mapper.WeatherDataMapper">
+    <insert id="addWeatherData">
+        INSERT INTO weather_data (data_name,data_property,data_format,location,begin_date,end_date,resolution,image_save_path,upload_date)
+        VALUES (#{dataName},#{dataProperty},#{dataFormat},#{location},#{beginDate},#{endDate},#{resolution},#{imageSavePath},#{uploadDate})
+
+    </insert>
+    <update id="updateWeatherData" parameterType="edu.uestc.imdds.entitiy.WeatherData">
+        <!-- UPDATE weather_data
+                SET data_name = #{dataName},
+                    date_property = #{dateProperty},
+                    data_format = #{dataFormat},
+                    location = #{location},
+                    beginDate = #{beginDate},
+                    resolution = #{resolution},
+                    image_save_path = #{imageSavePath},
+                    upload_date = #{uploadDate}
+                WHERE id = #{id} -->
+        <!--动态SQL修改语句-->
+        UPDATE weather_data <set>
+        <if test="dataName != null">data_name = #{dataName},</if>
+        <if test="dataProperty != null">data_property = #{dataProperty},</if>
+        <if test="dataFormat != null">data_format = #{dataFormat},</if>
+        <if test="location != null">location = #{location},</if>
+        <if test="beginDate != null">begin_date = #{beginDate},</if>
+        <if test="endDate != null">end_date = #{endDate},</if>
+        <if test="resolution != null">resolution = #{resolution},</if>
+        <if test="imageSavePath != null">image_save_path = #{imageSavePath},</if>
+        <if test="uploadDate != null">upload_date = #{uploadDate}</if>
+        </set>
+        WHERE id = #{id}
+        
+
+    </update>
+
+    <delete id="deleteById">
+        delete from weather_data
+        where id = #{id}
+    </delete>
+    <select id="getById" resultType="edu.uestc.imdds.entitiy.WeatherData" parameterType="java.lang.Integer" >
+        select  *
+        from weather_data
+        where id = #{id}
+    </select>
+    <select id="getByName" resultType="edu.uestc.imdds.entitiy.WeatherData">
+        select  *
+        from weather_data
+        where data_name = #{dataName}
+    </select>
+    <select id="getAll" resultType="edu.uestc.imdds.entitiy.WeatherData">
+        select  * from weather_data
+    </select>
+</mapper>

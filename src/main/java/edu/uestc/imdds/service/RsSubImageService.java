@@ -10,9 +10,13 @@ import java.util.List;
 
 public interface RsSubImageService {
 
+
+
     List<RsSubImage> getAll();
 
     List<RsSubImage> getByFatherId(Integer id);
+
+    RsSubImage getById(Integer id);
 
     boolean add(RsSubImage subImage);
 

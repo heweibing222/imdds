@@ -3,37 +3,48 @@ package edu.uestc.imdds.entitiy;
 public class WeatherData {
     private Integer id ;
     private String dataName;
-    private String dateProperty; //数据属性
+    private String dataProperty; //数据属性
     private String dataFormat; //数据格式
     private String location;  //位置
-    private String date; //时间
-    private String resulation; // 分辨率
+    private String beginDate; //时间
+    private String endDate;
+    private String resolution; // 分辨率
     private String imageSavePath;
     private String uploadDate;
     // GeoServer
     //...
 
+
     public WeatherData() {
     }
 
-    public WeatherData(Integer id, String dataName, String dateProperty, String dataFormat, String location, String date, String resulation, String imageSavePath, String uploadDate) {
+    public WeatherData(Integer id, String dataName, String dataProperty, String dataFormat, String location, String beginDate, String endDate, String resolution, String imageSavePath, String uploadDate) {
         this.id = id;
         this.dataName = dataName;
-        this.dateProperty = dateProperty;
+        this.dataProperty = dataProperty;
         this.dataFormat = dataFormat;
         this.location = location;
-        this.date = date;
-        this.resulation = resulation;
+        this.beginDate = beginDate;
+        this.endDate = endDate;
+        this.resolution = resolution;
         this.imageSavePath = imageSavePath;
         this.uploadDate = uploadDate;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
+    @Override
+    public String toString() {
+        return "WeatherData{" +
+                "id=" + id +
+                ", dataName='" + dataName + '\'' +
+                ", dataProperty='" + dataProperty + '\'' +
+                ", dataFormat='" + dataFormat + '\'' +
+                ", location='" + location + '\'' +
+                ", beginDate='" + beginDate + '\'' +
+                ", endDate='" + endDate + '\'' +
+                ", resolution='" + resolution + '\'' +
+                ", imageSavePath='" + imageSavePath + '\'' +
+                ", uploadDate='" + uploadDate + '\'' +
+                '}';
     }
 
     public Integer getId() {
@@ -52,12 +63,12 @@ public class WeatherData {
         this.dataName = dataName;
     }
 
-    public String getDateProperty() {
-        return dateProperty;
+    public String getDataProperty() {
+        return dataProperty;
     }
 
-    public void setDateProperty(String dateProperty) {
-        this.dateProperty = dateProperty;
+    public void setDataProperty(String dataProperty) {
+        this.dataProperty = dataProperty;
     }
 
     public String getDataFormat() {
@@ -68,20 +79,36 @@ public class WeatherData {
         this.dataFormat = dataFormat;
     }
 
-    public String getDate() {
-        return date;
+    public String getLocation() {
+        return location;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
-    public String getResulation() {
-        return resulation;
+    public String getBeginDate() {
+        return beginDate;
     }
 
-    public void setResulation(String resulation) {
-        this.resulation = resulation;
+    public void setBeginDate(String beginDate) {
+        this.beginDate = beginDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getResolution() {
+        return resolution;
+    }
+
+    public void setResolution(String resolution) {
+        this.resolution = resolution;
     }
 
     public String getImageSavePath() {
