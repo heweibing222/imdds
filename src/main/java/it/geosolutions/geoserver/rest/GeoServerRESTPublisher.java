@@ -1754,6 +1754,12 @@ public class GeoServerRESTPublisher {
     }
 
 
+    public boolean setStyle(String workspace, String coverageName, String style){
+        GSLayerEncoder layerEncoder = configureDefaultStyle(style);
+        return configureLayer(workspace, coverageName, layerEncoder);
+    }
+
+
     /**
      * Upload and publish a GeoTIFF image.
      * 
