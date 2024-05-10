@@ -18,6 +18,6 @@ public interface UserService {
 
     List<User> getAll();
 
-    Boolean login(String username, String password);
+    User login(String username, String password);
 
 }

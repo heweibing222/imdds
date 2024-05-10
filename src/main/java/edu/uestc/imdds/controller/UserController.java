@@ -4,6 +4,7 @@ package edu.uestc.imdds.controller;
 import edu.uestc.imdds.entitiy.User;
 import edu.uestc.imdds.service.implement.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -57,7 +58,10 @@ public class UserController {
     @PostMapping("/login")
     @ResponseBody
     public Result login(@RequestParam String username, @RequestParam String password) {
-        boolean flag = userService.login(username, password);
-        return new Result(flag ? Code.ADD_OK:Code.ADD_ERR, flag, flag ? "登录成功！":"登录失败，请检查用户名与密码！");
+        User user = userService.login(username, password);
+        System.out.println(user.toString());
+        boolean flag = user.getId()==null ? false : true;
+        System.out.println(flag);
+        return new Result(flag ? Code.LOGIN_OK:Code.LOGIN_ERR, user, flag ? "登录成功！":"登录失败，请检查用户名与密码！");
     }
 }

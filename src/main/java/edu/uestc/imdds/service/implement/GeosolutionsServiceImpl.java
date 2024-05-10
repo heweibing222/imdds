@@ -30,19 +30,21 @@ public class GeosolutionsServiceImpl implements GeosolutionsService {
 
     @Autowired
     GeoServerRESTManager geoServerRESTManager;
-    @Autowired
-    RsSubImageService rsSubImageService;
+
     @Autowired
     WeatherDataService weatherDataService;
     @Autowired
     private FileSystem fileSystem;
 
     @Override
-    public boolean publishGeoTIFF(Integer id) {
+    public boolean publishGeoTIFF(RsSubImage rsSubImage) {
         createWorkspace(workspace_geotiff);
-        RsSubImage rsSubImage = rsSubImageService.getById(id);
+
         String storename = rsSubImage.getImageName();
         String hdfsPath = rsSubImage.getImageSavePath();
+        //存在就直接返回true
+        if(geoServerRESTManager.getReader().existsCoverage(workspace_geotiff, storename ,storename)) return true;
+
         File localFile = new File(localFilePath+storename);
         // 从 HDFS 中读取文件，并写入到本地文件中
         try (OutputStream out = new FileOutputStream(localFile)) {

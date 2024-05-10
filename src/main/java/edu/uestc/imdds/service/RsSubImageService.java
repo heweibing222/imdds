@@ -24,4 +24,6 @@ public interface RsSubImageService {
 
     void download(Integer id, HttpServletResponse response) throws IOException;
 
+    boolean publish(Integer id);
+
 }

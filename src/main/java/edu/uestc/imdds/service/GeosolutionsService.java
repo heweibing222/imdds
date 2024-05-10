@@ -1,8 +1,10 @@
 package edu.uestc.imdds.service;
 
+import edu.uestc.imdds.entitiy.RsSubImage;
+
 public interface GeosolutionsService {
 
-    boolean publishGeoTIFF(Integer id);
+    boolean publishGeoTIFF(RsSubImage rsSubImage);
 
     boolean createWorkspace(String workSpaceName);
 

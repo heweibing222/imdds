@@ -17,7 +17,8 @@ import java.util.List;
 
 @Service
 public class RsSubImageServiceImpl implements RsSubImageService {
-
+    @Autowired
+    GeosolutionsServiceImpl geosolutionService;
     @Autowired
     FileSystem fileSystem;
     @Autowired
@@ -75,4 +76,12 @@ public class RsSubImageServiceImpl implements RsSubImageService {
         }
         inputStream.close();
     }
+
+    @Override
+    public boolean publish(Integer id) {
+        RsSubImage subImage = rsSubImageMapper.getById(id);
+        return geosolutionService.publishGeoTIFF(subImage);
+    }
+
+
 }

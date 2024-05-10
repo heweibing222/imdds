@@ -76,11 +76,17 @@ public class RsImageController {
         return new Result(code,imageList,msg);
     }
 
-
     @GetMapping ("/download")
     @ResponseBody
     public void download(Integer id, HttpServletResponse response) throws IOException {
         rsSubImageService.download(id,response);
     }
 
+    @GetMapping("/publish")
+    @ResponseBody
+    public Result publish(Integer id){
+        boolean flag = rsSubImageService.publish(id);
+        System.out.println("flag:"+flag);
+        return new Result(flag ? Code.GET_OK:Code.GET_ERR, flag, flag ? "遥感影像发布成功！":"遥感影像发布失败！");
+    }
 }
